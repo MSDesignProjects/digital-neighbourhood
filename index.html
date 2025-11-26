@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Digital Neighbourhood</title>
+  <title>London Map Artwork</title>
 
  <link rel="stylesheet" href="style.css">
 </head>
@@ -12,27 +12,55 @@
   <div class="container">
     <img src="london-map.jpeg" alt="London Map Artwork" class="map-image" />
     
-    <button class="marker1" onclick="openLabel1()"></button>
-    <button class="marker2" onclick="openLabel2()"></button>
-    <button class="marker3" onclick="openLabel3()"></button>
+    <button class="trellick" onclick="openTrellick()"></button>
+    <button class="meanwhile" onclick="openMeanwhile()"></button>
+    <button class="wech" onclick="openWech()"></button>
 
-    <div class="label1" id="label1">
-      <button onclick="closeLabel1()">&#x2715</button>
-      <h1>Location 1</h1>
+    <div class="trellicklabel" id="trellicklabel">
+      <button onclick="closeTrellick()">&#x2715</button>
+      <h1>Trellick Tower</h1>
       <h2>what.three.words</h2>
     </div>
-    <div class="label2" id="label2">
-      <button onclick="closeLabel2()">&#x2715</button>
-      <h1>Location 2</h1>
+    <div class="meanwhilelabel" id="meanwhilelabel">
+      <button onclick="closeMeanwhile()">&#x2715</button>
+      <h1>Meanwhile Gardens</h1>
       <h2>what.three.wordss</h2>
     </div>
-    <div class="label3" id="label3">
-      <button onclick="closeLabel3()">&#x2715</button>
-      <h1>Location 3</h1>
+    <div class="wechlabel" id="wechlabel">
+      <button onclick="closeWech()">&#x2715</button>
+      <h1>WECH Community Centre</h1>
       <h2>what.three.wordsss</h2>
+    </div>
+
+    <div id="prompttrellick" class="prompt-screen">
+      <div class="prompt-content">
+        <h1>Trellick Tower</h1>
+        <h2>Look up at the tallest tower, notice that room? What if that was a community space...?</h2>
+        <p>Tap anywhere to enter map.</p>
+      </div>
+     
+    </div>
+
+    <div id="promptmeanwhile" class="prompt-screen">
+      <div class="prompt-content">
+        <h1>Meanwhile Gardens</h1>
+        <h2>Look across the canal. Notice those funny statues?</h2>
+        <p>Tap anywhere to enter map.</p>
+      </div>
+    
+    </div>
+
+    <div id="promptwech" class="prompt-screen">
+      <div class="prompt-content">
+        <h1>WECH Community Centre</h1>
+        <h2> Notice the estate you're in? This place has a lot of history.</h2>
+        <p>Tap anywhere to enter map.</p>
+      </div>
+    
     </div>
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
+

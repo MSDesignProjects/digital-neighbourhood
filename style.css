@@ -1,3 +1,4 @@
+
 html, body {
     background: black;
     margin: 0;
@@ -26,7 +27,7 @@ html, body {
   }
 
 
-  .marker1 {
+  .trellick {
     position: absolute;
     top: 40%; 
     left: 60%;
@@ -39,7 +40,7 @@ html, body {
     
   }
 
-  .marker2 {
+  .meanwhile {
     position: absolute;
     top: 50%; 
     left: 50%;
@@ -53,7 +54,7 @@ html, body {
   }
 
 
-  .marker3 {
+  .wech {
     position: absolute;
     top: 10%; 
     left: 20%;
@@ -64,8 +65,14 @@ html, body {
     cursor: pointer;
     transform: translate(-50%, -50%)
   }
+
+  .location-scanned {
+    background: greenyellow;
+  } 
   
-  .label1, .label2, .label3 {
+
+
+  .trellicklabel, .meanwhilelabel, .wechlabel {
     position: absolute;
     background: rgba(0, 0, 0, 0.8);
     color: #fff;
@@ -81,18 +88,18 @@ html, body {
     display: none;
   }
 
-  .label1 h1, .label2 h1, .label3 h1 {
+  .trellicklabel h1, .meanwhilelabel h1, .wechlabel h1 {
       font-size: 20px;
       font-weight: normal;
   }
 
-  .label1 h2, .label2 h2, .label3 h2{
+  .trellicklabel h2, .meanwhilelabel h2, .wechlabel h2{
     font-size: 14px;
     font-weight: normal;
     margin-top: 20px;
   }
 
-  .label1 button, .label2 button, .label3 button {
+  .trellicklabel button, .meanwhilelabel button, .wechlabel button {
     margin-top: 1px;
     position: absolute;
     top: 4px;
@@ -107,4 +114,34 @@ html, body {
 
   .open-label{
     display:block;
+  }
+
+
+  .prompt-screen {
+    position:fixed;
+    inset: 0;
+    background-color: #fff;
+    height: 100vh;
+    width: 100vw;
+    font-size: 100px;
+    color:black;
+    text-align: center;
+    justify-content: center;
+    padding: 20px;
+    display: none;
+
+    z-index: 9999;
+
+    opacity: 1;
+    transition: opacity 0.8s ease;
+
+  }
+
+  .prompt-content {
+    pointer-events: none;
+  }
+
+  .prompt-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
   }

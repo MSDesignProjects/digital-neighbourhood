@@ -56,6 +56,8 @@ function showPrompt(id) {
 
 //COMMUNITY SPACE
 
+// Load stored scans
+let scans = JSON.parse(localStorage.getItem("scans")) || {};
 //show button when 3 scanned
 if (scans["trellick"] && scans["meanwhile"] && scans["wech"]) {
     document.getElementById("community-btn").classList.add("show");

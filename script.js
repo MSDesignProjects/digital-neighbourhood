@@ -1,26 +1,26 @@
-let label1 = document.getElementById("trellicklabel")
-let label2 = document.getElementById("meanwhilelabel")
-let label3 = document.getElementById("wechlabel")
+let trellick = document.getElementById("trellicklabel")
+let meanwhile = document.getElementById("meanwhilelabel")
+let wech = document.getElementById("wechlabel")
 
 function openTrellick(){
-    label1.classList.add("open-label");
+    trellick.classList.add("open-label");
 }
 function closeTrellick(){
-    label1.classList.remove("open-label");
+    trellick.classList.remove("open-label");
 }
 
 function openMeanwhile(){
-    label2.classList.add("open-label");
+    meanwhile.classList.add("open-label");
 }
 function closeMeanwhile(){
-    label2.classList.remove("open-label");
+    meanwhile.classList.remove("open-label");
 }
 
 function openWech(){
-    label3.classList.add("open-label");
+    wech.classList.add("open-label");
 }
 function closeWech(){
-    label3.classList.remove("open-label");
+    wech.classList.remove("open-label");
 }
 
 

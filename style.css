@@ -143,12 +143,13 @@ html, body {
   }
 
   .prompt-content h1 {
-    color: green;
     font-size: 30px;
+    font-weight: normal;
   }
 
   .prompt-content h2 {
     font-size: 15px;
+    font-weight: normal;
   }
 
   .prompt-content {

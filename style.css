@@ -72,13 +72,25 @@ html, body {
     transform: translate(-50%, -50%)
   }
 
+ .walterton {
+    position: absolute;
+    top: 150px; 
+    left: 600px;
+    width: 30px;
+    height: 30px;
+    background: red;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: translate(-50%, -50%)
+  }
+
   .location-scanned {
     background: greenyellow;
   } 
   
 
 
-  .trellicklabel, .meanwhilelabel, .wechlabel {
+  .trellicklabel, .meanwhilelabel, .wechlabel, .waltertonlabel {
    
     background: rgba(0, 0, 0, 0.8);
     color: #fff;
@@ -95,18 +107,18 @@ html, body {
     display: none;
   }
 
-  .trellicklabel h1, .meanwhilelabel h1, .wechlabel h1 {
+  .trellicklabel h1, .meanwhilelabel h1, .wechlabel h1, .waltertonlabel h1 {
       font-size: 20px;
       font-weight: normal;
   }
 
-  .trellicklabel h2, .meanwhilelabel h2, .wechlabel h2{
+  .trellicklabel h2, .meanwhilelabel h2, .wechlabel h2, .waltertonlabel h2 {
     font-size: 14px;
     font-weight: normal;
     margin-top: 20px;
   }
 
-  .trellicklabel button, .meanwhilelabel button, .wechlabel button {
+  .trellicklabel button, .meanwhilelabel button, .wechlabel button, .waltertonlabel button {
     margin-top: 1px;
     position: absolute;
     top: 4px;
@@ -138,6 +150,7 @@ html, body {
     color:black;
     text-align: center;
     justify-content: center;
+    overflow-y: scroll;
     align-items: center;
     padding: 20px;
     display: flex;

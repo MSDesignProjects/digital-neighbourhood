@@ -20,6 +20,7 @@
     <button class="trellick" onclick="openTrellick()"></button>
     <button class="meanwhile" onclick="openMeanwhile()"></button>
     <button class="wech" onclick="openWech()"></button>
+    <button class="walterton" onclick="openWalterton()"></button>
 
     <div class="trellicklabel" id="trellicklabel">
       <button onclick="closeTrellick()">&#x2715</button>
@@ -28,6 +29,7 @@
         <br><br> W10 5UU
       </h2>
     </div>
+
     <div class="meanwhilelabel" id="meanwhilelabel">
       <button onclick="closeMeanwhile()">&#x2715</button>
       <h1>Meanwhile Gardens</h1>
@@ -35,19 +37,39 @@
         <br><br> W10 5BN
       </h2>
     </div>
+
     <div class="wechlabel" id="wechlabel">
       <button onclick="closeWech()">&#x2715</button>
       <h1>WECH Community Centre</h1>
       <h2>what.three.wordsss
         <br><br> W9 3AZ
       </h2>
-      
     </div>
+
+     <div class="waltertonlabel" id="waltertonlabel">
+      <button onclick="closeWalterton()">&#x2715</button>
+      <h1>101 Walterton Road</h1>
+      <h2>what.three.wordss
+        <br><br> W9 3SP
+      </h2>
+    </div>
+
+
 
     <div id="prompttrellick" class="prompt-screen">
       <div class="prompt-content">
         <h1>Trellick Tower</h1>
-        <h2>Look up at the tallest tower, notice that room? What if that was a community space...?</h2>
+        <h2>Completed in 1972 and designed by architect Ernő Goldfinger, Trellick Tower is a brutalist residential tower block, first designed as part of the council’s social housing scheme. 
+            Its controversial yet rich history and distinct appearance make it a legendary neighbourhood icon. 
+            Its spatially efficient design consists of two distinct sections: the residential block and the amenities tower. Connected via floating bridges, the amenities tower not only holds the lift, stairs, and service rooms, but also the big disused boiler room. Still containing its old mechanisms, the boiler room has been rendered obsolete for the past 50 or so years, and is completely shut off to both residents and the public despite its potential for an incredible communal space.
+            Though the tower’s Grade II* listed status likely makes it tough to renovate spaces containing old machinery, it is interesting to ask why historical spaces can’t continue to serve the present instead of being hidden away and forgotten?
+
+            Learn more at: 
+
+            https://trellicktower.com/history
+            https://www.riba.org/explore/riba-collections/inside-our-collections/trellick-tower-turns-50/
+            https://www.whitemad.pl/en/trellick-tower-an-icon-of-british-brutalism-with-a-turbulent-past/
+          </h2>
         <p>Tap anywhere to enter map.</p>
       </div>
      
@@ -55,8 +77,16 @@
 
     <div id="promptmeanwhile" class="prompt-screen">
       <div class="prompt-content">
-        <h1>Meanwhile Gardens</h1>
-        <h2>Look across the canal. Notice those funny statues?</h2>
+        <h1>Meanwhile Gardens + Gerry's Pompeii</h1>
+        <h2>You are standing by one of the entrances to Meanwhile Gardens, a green space born in 1976 directly community effort. Its founder, Jamie McCollough, was a local artist and engineer who simply wanted to see a derelict space by the canal be transformed into something beneficial for the community. After hefty negotiations with the council and a lot of community volunteering, it finally came to be.
+            On the theme of repurposing derelict spaces, you may have noticed the funny sculptures across the canal. This is Gerry’s Pompeii. Irish sculptor Gerry Dalton dedicated his time to building his own little haven on that small strip of land after asking for permission from the council in the early 80s. Gerry’s Pompeii comprises of an army of over 100 wooden hand-carved sculptures and knick-knacks that overflowed from the canal-side display into his back-garden.
+            Unfortunately, after his passing in 2019, the sculptures in the garden were removed, and all that remains is the display you can see. If only there was a way to visit it up-close before it 
+
+            Learn more at: 
+            https://meanwhile-gardens.org.uk/history/16
+            https://meanwhile-gardens.org.uk/news/our-journey/4-acres-of-freedom/3
+            https://www.gerryspompeii.com/
+          </h2>
         <p>Tap anywhere to enter map.</p>
       </div>
     
@@ -65,9 +95,37 @@
     <div id="promptwech" class="prompt-screen">
       <div class="prompt-content">
         <h1>WECH Community Centre</h1>
-        <h2> Notice the estate you're in? This place has a lot of history.</h2>
+        <h2>Maida Hill used to feature a plethora of estates, many of which were derelict and lacked basic amenities during the 60s through to the 80s before getting sold to private developers without consulting residents in the 80s. The sheer volume of abandoned, run-down estates eventually gave rise to the prominent Elgin Avenue squatting campaign. One third of Walterton Estate was completely empty and abandoned, while other nearby estates were heavily squatted, and the residents were at risk from asbestos without knowing.
+            This sparked the creation of WEAG (Walterton and Elgin Action Group), who would organise group coach trips to protest in front of the council offices, and eventually WECH (Walterton and Elgin Community Homes) which was an organisation formed under guidance from nearby housing associations. A lengthy campaign began with the aim of taking back ownership of the housing. By the early 90s, WECH had secured ownership of over 900 homes, and were given over £20 Million from the council to redo the estates, with the programme insisting on resident participation and high-quality materials and design. WECH has been working closely with Westminster Council ever since.  
+            What can’t a bit of community effort do?
+
+            Learn more at:
+            https://wech.org.uk/about-wech/history-of-wech/
+            https://www.peoplesplans.org/peoplesplans/episode/walterton-and-elgin-action-group
+            http://re-photo.co.uk/?tag=wech
+          </h2>
         <p>Tap anywhere to enter map.</p>
       </div>
+    </div>
+
+    <div id="promptwalterton" class="prompt-screen">
+      <div class="prompt-content">
+        <h1>101 Walterton Road</h1>
+        <h2>Though this street may seem quite normal, this low-rise strip of flats was previously home to a squat where Joe Strummer (aka. the drummer from The Clash) lived and founded The 101ers. 
+            Additionally, just around the corner (where you can now find a Sainsbury’s) was previously home to an old pub called The Chippenham, where The 101ers would hold weekly shows. 
+            The Maida Hill area has a lot of interesting history tied to both the 80s punk and Afro-Caribbean reggae movement. 425 Harrow road (just another walk away, and now home to yet another supermarket chain), used to be the London Print Studio, a studio started by John Phillips, who found himself printing some of the first posters for the 101ers, Notting Hill Carnival, Meanwhile Gardens, and early WECH protests. Unfortunately, London Print Studio shut down in 2020 due to the pressures of the pandemic and turned into the  current day Tesco’s. 
+            Who knew that a measly Tesco’s could hold so much meaning?
+
+            Learn more at:
+
+            https://rockandrollogist.wordpress.com/2020/10/29/101-walterton-road/
+            https://www.building.co.uk/an-ode-to-a-corner-of-london-that-is-forever-punk/1024602.article
+            https://maidahillforum.org.uk/history/
+            https://www.theartnewspaper.com/2020/10/16/another-yawning-gap-radical-london-print-studio-closes-its-doors
+          </h2>
+        <p>Tap anywhere to enter map.</p>
+      </div>
+     
     </div>
 
     <button id="community-btn" class="community-btn">Go to Shared Space</button>

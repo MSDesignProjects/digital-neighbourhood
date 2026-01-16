@@ -25,8 +25,8 @@ html, body {
 
 
   .map-image {
-    width: auto;
-    height: auto;
+    width: 1700px;
+    height: 1400px;
     left: 0px;
     display: block;
     overflow: hidden;
@@ -135,9 +135,30 @@ html, body {
     display:block;
   }
 
+  .view-info-btn {
+  margin-top: 10px;
+  padding: 5px 10px;
+  font-size: 12px;
+  background: green;
+  color: black;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  }
+
+  .view-info-btn:hover {
+    opacity: 0.8;
+  }
+    
+
+
+
+
+
 
   .prompt-screen {
     position:fixed;
+    cursor: pointer; 
     inset: 0;
     background-color: #fff;
     height: 100vh;
@@ -159,28 +180,75 @@ html, body {
 
     opacity: 1;
     transition: opacity 0.8s ease;
-
   }
 
-  .prompt-content h1 {
-    color: green;
-    font-size: 30px;
-  }
-
-  .prompt-content h2 {
-    font-size: 15px;
-  }
-
-  .prompt-content {
-    pointer-events: none;
-      max-width: 90%; 
-      margin: 0 auto;  
-  }
 
   .prompt-screen.hidden {
     opacity: 0;
     pointer-events: none;
   }
+
+
+
+  .prompt-main h1 {
+    color: #71b428;
+    font-size: 30px;
+    margin-bottom: 15px;
+  }
+  
+  .prompt-main {
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .prompt-page {
+    display: none;
+    max-height: 65vh;
+    overflow-y: auto;
+    padding-right: 10px;
+    mask-image: linear-gradient(to bottom, #1d70ff 90%, transparent);
+  }
+
+  .prompt-page.active {
+  display: block;
+  }
+
+  .prompt-page p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 1.2em;
+  }
+
+  .prompt-page a {
+  color: #71b428;
+  text-decoration: underline;
+  word-break: break-word;
+  }
+
+  .prompt-page a:hover {
+    opacity: 0.7;
+  }
+
+  @media (max-width: 600px) {
+      .prompt-main {
+      padding: 15px;
+    }
+
+    .prompt-page {
+      max-height: 70vh;
+    }
+
+    .prompt-page p {
+      font-size: 13px;
+    }
+  }
+
+
+
+
 
   .community-btn {
     position: fixed;
@@ -202,3 +270,4 @@ html, body {
   .community-btn.show {
     display:block;
   }
+

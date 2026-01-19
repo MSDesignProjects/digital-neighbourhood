@@ -35,8 +35,8 @@ html, body {
 
   .trellick {
     position: absolute;
-    top: 880px; 
-    left: 300px;
+    top: 710px; 
+    left: 450px;
     width: 30px;
     height: 30px;
     background: red;
@@ -48,8 +48,8 @@ html, body {
 
   .meanwhile {
     position: absolute;
-    top: 1000px; 
-    left: 700px;
+    top: 850px; 
+    left: 570px;
     width: 30px;
     height: 30px;
     background: red;
@@ -62,8 +62,8 @@ html, body {
 
   .wech {
     position: absolute;
-    top: 550px; 
-    left: 1200px;
+    top: 1010px; 
+    left: 1100px;
     width: 30px;
     height: 30px;
     background: red;
@@ -74,8 +74,8 @@ html, body {
 
  .walterton {
     position: absolute;
-    top: 150px; 
-    left: 600px;
+    top: 840px; 
+    left: 1570px;
     width: 30px;
     height: 30px;
     background: red;
@@ -97,7 +97,10 @@ html, body {
     text-align: center;
     font-size: 60px;
     padding: 50px;
+    padding-bottom: 70px;
     border-width: 4px;
+    flex-direction: column;
+    align-items: center;
     border-color: white;
     white-space: nowrap;
     position: fixed;
@@ -135,19 +138,28 @@ html, body {
     display:block;
   }
 
+  .view-info-container {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  }
+
   .view-info-btn {
+  font-family: "Roboto Mono", monospace;
   margin-top: 10px;
-  padding: 5px 10px;
+  padding: 8px 14px;
   font-size: 12px;
   background: green;
   color: black;
   border: none;
   cursor: pointer;
-  border-radius: 4px;
+  border: 1px white;
   }
 
   .view-info-btn:hover {
     opacity: 0.8;
+
   }
     
 
@@ -180,6 +192,8 @@ html, body {
 
     opacity: 1;
     transition: opacity 0.8s ease;
+  overscroll-behavior: contain;
+  touch-action: manipulation;
   }
 
 
@@ -247,6 +261,26 @@ html, body {
   }
 
 
+  .map-image {
+    transition: opacity 0.6s ease;
+  }
+
+
+  #overlay-logo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px; /* adjust as needed */
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5000;
+  transition: opacity 0.6s ease;
+}
+
+#overlay-logo.show {
+  opacity: 1;
+}
 
 
 

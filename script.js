@@ -70,6 +70,21 @@ if (scanned) {
 
 
 // =====================
+// LOGO OVERLAY
+// =====================
+function showOverlayLogo() {
+    const logo = document.getElementById("overlay-logo");
+
+    logo.classList.add("show");
+
+    setTimeout(() => {
+        logo.classList.remove("show");
+    }, 1000); // visible for 1 second
+}
+
+
+
+// =====================
 // PROMPT PAGE LOGIC
 // =====================
 function showPrompt(id) {
@@ -85,7 +100,13 @@ function showPrompt(id) {
     prompt.classList.remove("hidden");
     prompt.style.display = "flex";
 
-    prompt.onclick = () => advancePrompt(prompt);
+   prompt.addEventListener("click", (e) => {
+    // Only advance if the background itself was clicked
+    if (e.target === prompt) {
+        advancePrompt(prompt);
+    }
+    });
+
 }
 
 function advancePrompt(prompt) {
@@ -110,6 +131,7 @@ function closePrompt(prompt) {
     setTimeout(() => {
         prompt.style.display = "none";
         centerMap();
+        showOverlayLogo();
     }, 800);
 }
 
@@ -140,6 +162,38 @@ Object.keys(scans).forEach(loc => {
         addViewInfoButton(loc);
     }
 });
+
+
+
+
+// =====================
+// CHANGING MAP VERSIONS
+// =====================
+function updateMapImage() {
+    const map = document.getElementById("map-image");
+    if (!map) return;
+
+    const scanCount = Object.values(scans).filter(Boolean).length;
+
+    let mapVersion = 0;
+    if (scanCount === 4) mapVersion = 4;
+    else if (scanCount === 3) mapVersion = 3;
+    else if (scanCount === 2) mapVersion = 2;
+    else if (scanCount === 1) mapVersion = 1;
+
+    map.style.opacity = 0;
+
+    setTimeout(() => {
+        map.src = `map${mapVersion}.JPG`;
+        map.style.opacity = 1;
+    }, 300);
+}
+
+updateMapImage();
+
+
+
+
 
 
 

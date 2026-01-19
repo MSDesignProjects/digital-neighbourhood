@@ -8,19 +8,48 @@ let activePrompt = null;
 // =====================
 // LABEL OPEN / CLOSE
 // =====================
-function openLabel(location) {
-  LOCATIONS.forEach(loc => {
-    const label = document.getElementById(loc + "label");
-    label.classList.toggle("open-label", loc === location && !label.classList.contains("open-label"));
-    if (loc !== location) label.classList.remove("open-label");
-  });
+// =====================
+// LABEL CLICK FUNCTIONS
+// =====================
+let trellick = document.getElementById("trellicklabel");
+let meanwhile = document.getElementById("meanwhilelabel");
+let wech = document.getElementById("wechlabel");
+let walterton = document.getElementById("waltertonlabel");
+
+function openTrellick() {
+    trellick.classList.toggle("open-label");
+    meanwhile.classList.remove("open-label");
+    wech.classList.remove("open-label");
+    walterton.classList.remove("open-label");
 }
 
-function closeAllLabels() {
-  LOCATIONS.forEach(loc => {
-    document.getElementById(loc + "label").classList.remove("open-label");
-  });
+function openMeanwhile() {
+    meanwhile.classList.toggle("open-label");
+    trellick.classList.remove("open-label");
+    wech.classList.remove("open-label");
+    walterton.classList.remove("open-label");
 }
+
+function openWech() {
+    wech.classList.toggle("open-label");
+    trellick.classList.remove("open-label");
+    meanwhile.classList.remove("open-label");
+    walterton.classList.remove("open-label");
+}
+
+function openWalterton() {
+    walterton.classList.toggle("open-label");
+    trellick.classList.remove("open-label");
+    meanwhile.classList.remove("open-label");
+    wech.classList.remove("open-label");
+}
+
+function closeTrellick() { trellick.classList.remove("open-label"); }
+function closeMeanwhile() { meanwhile.classList.remove("open-label"); }
+function closeWech() { wech.classList.remove("open-label"); }
+function closeWalterton() { walterton.classList.remove("open-label"); }
+
+
 
 // =====================
 // QR CODE HANDLING
@@ -43,27 +72,42 @@ LOCATIONS.forEach(loc => {
   addViewInfoButton(loc);
 });
 
+// hide all prompts initially
+document.querySelectorAll(".prompt-screen").forEach(el => {
+el.style.display = "none";
+});
+
+if (scanned) {
+    showPrompt(`prompt${scanned}`);
+}
+
 // =====================
 // PROMPT SYSTEM
 // =====================
 function showPrompt(location) {
-  closePrompt(); // ensure only one prompt exists
+  closePrompt(); // ensuring only one prompt is active
 
-  const prompt = document.getElementById("prompt" + location);
-  if (!prompt) return;
+    const prompt = document.getElementById(id);
+    if (!prompt) return;
 
-  const pages = prompt.querySelectorAll(".prompt-page");
-  pages.forEach((p, i) => p.classList.toggle("active", i === 0));
+    // reset pages
+    const pages = prompt.querySelectorAll(".prompt-page");
+    pages.forEach((p, i) => {
+        p.classList.toggle("active", i === 0);
+    });
 
-  prompt.style.display = "flex";
-  prompt.classList.remove("hidden");
-  activePrompt = prompt;
+    prompt.classList.remove("hidden");
+    prompt.style.display = "flex";
 
-  prompt.onclick = e => {
-    if (e.target === prompt) advancePrompt();
-  };
+    prompt.onclick = () => {
+        advancePrompt(prompt);
+        console.log("clicked")
+    };
 }
 
+  
+
+  
 function advancePrompt() {
   if (!activePrompt) return;
 
@@ -90,12 +134,14 @@ function closePrompt() {
     showOverlayLogo();
     centerMap();
   }, 600);
-}
 
-// Auto-open prompt if QR used
+  // Auto-open prompt if QR used
 if (scannedLoc) {
   showPrompt(scannedLoc);
 }
+}
+
+
 
 // =====================
 // VIEW INFO AGAIN BUTTON
@@ -111,6 +157,7 @@ function addViewInfoButton(location) {
 
   btn.onclick = e => {
     e.stopPropagation();
+    console.log("on click");
     showPrompt(location);
   };
 
@@ -153,13 +200,19 @@ function centerMap() {
 // =====================
 // OVERLAY LOGO
 // =====================
+
 function showOverlayLogo() {
   const logo = document.getElementById("overlay-logo");
   if (!logo) return;
 
   logo.classList.add("show");
-  setTimeout(() => logo.classList.remove("show"), 1000);
+  setTimeout(() => logo.classList.remove("show"), 5000);
 }
+
+// Show logo overlay on page load for 1 second
+window.addEventListener("load", () => {
+    showOverlayLogo();
+});
 
 // =====================
 // COMMUNITY UNLOCK

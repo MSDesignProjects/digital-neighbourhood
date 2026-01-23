@@ -93,47 +93,37 @@ html, body {
   }
 
   .trellick.location-scanned {
-    width:120px;
+    width:150px;
     height:200px;
-    background-image: url(trellickstamp.png);
-    border: none;
-    background-size: contain;
-    background-position: center;
-    cursor: pointer;
-    border-radius: 0; 
+    border-radius:0; 
+    background: transparent;
   }
 
  .meanwhile.location-scanned {
-    width:120px;
+    width:150px;
     height:200px;
-    background-image: url(meanwhilestamp.png);
-    border: none;
-    background-size: contain;
-    background-position: center;
-    cursor: pointer;
-    border-radius: 0; 
+    border-radius:0;
+     background: transparent;
   }
 
  .wech.location-scanned {
     width:200px;
-    height:120px;
-    background-image: url(wechstamp.png);
-    border: none;
-    background-size: contain;
-    background-position: center;
-    cursor: pointer;
-    border-radius: 0; 
+    height:150px;
+    border-radius:0;
+     background: transparent;
   }
 
  .walterton.location-scanned {
     width:200px;
     height:120px;
-    background-image: url(waltertonstamp.png);
-    border: none;
-    background-size: contain;
-    background-position: center;
-    cursor: pointer;
-    border-radius: 0; 
+    border-radius:0;
+     background: transparent;
+  }
+
+
+  .stamp {
+    transform: translate(-50%, -50%);
+    display: none;
   }
   
 
@@ -277,7 +267,7 @@ html, body {
     cursor: pointer; 
     inset: 0;
     background-color: #fff;
-    height: 100vh;
+    height: 100%;
     min-height: 100vh;
     width: 100%;
     font-size: 11px;
@@ -309,7 +299,7 @@ html, body {
 
 
   .prompt-main h1 {
-    color: #71b428;
+    color: #e94f3e;
     font-size: 30px;
     margin-bottom: 15px;
   }

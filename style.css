@@ -94,30 +94,54 @@ html, body {
 
   .trellick.location-scanned {
     width:120px;
-    height:auto;
+    height:200px;
     background-image: url(trellickstamp.PNG);
-    border-radius:0;
+    border: none;
+    background-color: transparent; /* remove red */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    border-radius: 0; 
   }
 
  .meanwhile.location-scanned {
     width:120px;
-    height:auto;
+    height:200px;
     background-image: url(meanwhilestamp.PNG);
-    border-radius:0;
+    border: none;
+    background-color: transparent; /* remove red */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    border-radius: 0; 
   }
 
  .wech.location-scanned {
-    width:120px;
-    height:240px;
+    width:200px;
+    height:120px;
     background-image: url(wechstamp.PNG);
-    border-radius:0;
+    border: none;
+    background-color: transparent; /* remove red */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    border-radius: 0; 
   }
 
  .walterton.location-scanned {
-    width:120px;
-    height:240px;
+    width:200px;
+    height:120px;
     background-image: url(waltertonstamp.PNG);
-    border-radius:0;
+    border: none;
+    background-color: transparent; /* remove red */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    border-radius: 0; 
   }
   
 

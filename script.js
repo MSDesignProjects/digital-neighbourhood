@@ -78,7 +78,6 @@ document.querySelectorAll(".prompt-screen").forEach(el => {
     el.style.display = "none";
 });
 
-
 if (scanned) {
     showPrompt(`prompt${scanned}`);
 }
@@ -127,6 +126,28 @@ function closePrompt(prompt) {
         centerMap();
     }, 800);
 }
+
+
+// =====================
+// STAMPS
+// =====================
+// Example: show stamp if location scanned
+function showStamp(location) {
+    const stamp = document.getElementById(location + "-stamp");
+    if (stamp) stamp.style.display = "block";
+
+  
+    // Make stamp clickable to open prompt
+    stamp.onclick = () => showPrompt("prompt" + location);
+}
+
+// Run this for each scanned location
+Object.keys(scans).forEach(loc => {
+    if (scans[loc]) {
+        showStamp(loc);
+    }
+});
+
 
 
 // =====================

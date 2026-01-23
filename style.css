@@ -2,24 +2,30 @@ html, body {
     background: black;
     margin: 0;
     padding: 0;
-    width: auto;
-    overflow: auto;
+    width: 100%;
     height:auto;
   }
   
   body {
     margin: 0;
-    font-family: "Roboto Mono", monospace;
+    font-family: "Manrope", monospace;
+    letter-spacing: 0.05em;
     font-weight: 200;
     background: #f5f5f5;
   
   }
+
+  .wrapper {
+    width: 100vw;
+    height: 100vh;
+  }
+
   .container {
     position: relative;
     width: max-content;
     height:max-content;
     margin: 0px;
-    overflow-y: hidden;
+  
   }
 
 
@@ -39,11 +45,11 @@ html, body {
     left: 450px;
     width: 30px;
     height: 30px;
-    background: red;
+    background: #e94f3e;
     border-radius: 50%;
     cursor: pointer;
-    transform: translate(-50%, -50%)
-    
+    transform: translate(-50%, -50%);
+    border:none;
   }
 
   .meanwhile {
@@ -52,11 +58,11 @@ html, body {
     left: 570px;
     width: 30px;
     height: 30px;
-    background: red;
+    background: #e94f3e;
     border-radius: 50%;
     cursor: pointer;
-    transform: translate(-50%, -50%)
-    
+    transform: translate(-50%, -50%);
+    border: none;
   }
 
 
@@ -66,10 +72,11 @@ html, body {
     left: 1100px;
     width: 30px;
     height: 30px;
-    background: red;
+    background: #e94f3e;
     border-radius: 50%;
     cursor: pointer;
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%);
+    border:none;
   }
 
  .walterton {
@@ -78,47 +85,126 @@ html, body {
     left: 1570px;
     width: 30px;
     height: 30px;
-    background: red;
+    background: #e94f3e;
     border-radius: 50%;
     cursor: pointer;
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%);
+    border:none;
   }
 
-  .location-scanned {
-    background: greenyellow;
-  } 
+  .trellick.location-scanned {
+    width:120px;
+    height:auto;
+    background-image: url(trellickstamp.PNG);
+    border-radius:0;
+  }
+
+ .meanwhile.location-scanned {
+    width:120px;
+    height:auto;
+    background-image: url(meanwhilestamp.PNG);
+    border-radius:0;
+  }
+
+ .wech.location-scanned {
+    width:auto;
+    height:120px;
+    background-image: url(wechstamp.PNG);
+    border-radius:0;
+  }
+
+ .walterton.location-scanned {
+    width:auto;
+    height:120px;
+    background-image: url(waltertonstamp.PNG);
+    border-radius:0;
+  }
+  
+
+  .help {
+    position: fixed;
+    left: 15px;
+    top:15px;
+    width: 50px;
+    height: 50px;
+    outline:none;
+    color: #e94f3e;
+    border-radius: 50%;
+    border:none;
+    font-size: 30px;
+    cursor: pointer;
+    background: white;
+  }
+
+  .helplabel{
+    background: rgba(0, 0, 0, 0.9);
+    left: 50svw;
+    top: 50svh;
+    word-wrap: break-word;
+    color: #fff;
+    text-align: center;
+    padding: 50px;
+    outline-width: 1px;
+    outline-style: solid;
+    outline-color: white;
+    flex-direction: column;
+    align-items: center;
+    white-space: nowrap;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    display: none;
+    font-size: 18px;
+    font-weight: 300;
+    font-optical-sizing: auto;
+    font-family: "Manrope", monospace;
+  }
+
+  .helplabel button {
+     margin-top: 1px;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: none;
+    color: white;
+    border: none;
+    font-size:25px;
+    box-shadow: none;
+    cursor: pointer;
+  }
   
 
 
+
   .trellicklabel, .meanwhilelabel, .wechlabel, .waltertonlabel {
-   
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.9);
+    left: 50svw;
+    top: 50svh;
     color: #fff;
     text-align: center;
-    font-size: 60px;
     padding: 50px;
-    padding-bottom: 70px;
-    border-width: 4px;
+    outline-width: 2px;
+    outline-style: solid;
+    outline-color: white;
     flex-direction: column;
     align-items: center;
-    border-color: white;
     white-space: nowrap;
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -120%);
+    transform: translate(-50%, -50%);
     display: none;
+    aspect-ratio: 1/1;
   }
 
   .trellicklabel h1, .meanwhilelabel h1, .wechlabel h1, .waltertonlabel h1 {
-      font-size: 20px;
-      font-weight: normal;
+      font-size: 30px;
+      font-weight: 600;
+      font-optical-sizing: auto;
+      font-family: "Manrope", monospace;
   }
 
   .trellicklabel h2, .meanwhilelabel h2, .wechlabel h2, .waltertonlabel h2 {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: normal;
-    margin-top: 20px;
+    margin-top: 40px;
   }
 
   .trellicklabel button, .meanwhilelabel button, .wechlabel button, .waltertonlabel button {
@@ -140,21 +226,23 @@ html, body {
 
   .view-info-container {
   position: absolute;
-  bottom: 25px;
+  bottom: -25px;
   left: 50%;
   transform: translateX(-50%);
   }
 
   .view-info-btn {
-  font-family: "Roboto Mono", monospace;
   margin-top: 10px;
-  padding: 8px 14px;
-  font-size: 12px;
-  background: green;
-  color: black;
+  padding: 10px 15px;
+  font-size: 18px;
+  font-weight: 400;
+  background: #e94f3e;
+  color: white;
   border: none;
   cursor: pointer;
+  border-radius: 25px;
   border: 1px white;
+  display: block;
   }
 
   .view-info-btn:hover {
@@ -192,8 +280,8 @@ html, body {
 
     opacity: 1;
     transition: opacity 0.8s ease;
-  overscroll-behavior: contain;
-  touch-action: manipulation;
+    overscroll-behavior: contain;
+    touch-action: manipulation;
   }
 
 
@@ -268,18 +356,19 @@ html, body {
 
   #overlay-logo {
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 50vh;
+  left: 50vw;
   transform: translate(-50%, -50%);
   width: 120px; /* adjust as needed */
   opacity: 0;
   pointer-events: none;
   z-index: 5000;
-  transition: opacity 0.6s ease;
+  transition: opacity 1s ease-out;
 }
 
 #overlay-logo.show {
   opacity: 1;
+  transition: opacity 0s linear; /* NO easing in */
 }
 
 
@@ -295,7 +384,7 @@ html, body {
     color: white;
     border: 1px;
     border-color: greenyellow;
-    font-family: "Roboto Mono", monospace;
+    font-family: "Manrope", monospace;
     display: none;
     z-index: 99999;
     cursor: pointer;

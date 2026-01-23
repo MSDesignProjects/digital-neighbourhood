@@ -95,11 +95,9 @@ html, body {
   .trellick.location-scanned {
     width:120px;
     height:200px;
-    background-image: url(trellickstamp.PNG);
+    background-image: url(trellickstamp.png);
     border: none;
-    background-color: transparent; /* remove red */
     background-size: contain;
-    background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
     border-radius: 0; 
@@ -108,11 +106,9 @@ html, body {
  .meanwhile.location-scanned {
     width:120px;
     height:200px;
-    background-image: url(meanwhilestamp.PNG);
+    background-image: url(meanwhilestamp.png);
     border: none;
-    background-color: transparent; /* remove red */
     background-size: contain;
-    background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
     border-radius: 0; 
@@ -121,11 +117,9 @@ html, body {
  .wech.location-scanned {
     width:200px;
     height:120px;
-    background-image: url(wechstamp.PNG);
+    background-image: url(wechstamp.png);
     border: none;
-    background-color: transparent; /* remove red */
     background-size: contain;
-    background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
     border-radius: 0; 
@@ -134,11 +128,9 @@ html, body {
  .walterton.location-scanned {
     width:200px;
     height:120px;
-    background-image: url(waltertonstamp.PNG);
+    background-image: url(waltertonstamp.png);
     border: none;
-    background-color: transparent; /* remove red */
     background-size: contain;
-    background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
     border-radius: 0; 

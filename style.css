@@ -107,15 +107,15 @@ html, body {
   }
 
  .wech.location-scanned {
-    width:auto;
-    height:120px;
+    width:120px;
+    height:240px;
     background-image: url(wechstamp.PNG);
     border-radius:0;
   }
 
  .walterton.location-scanned {
-    width:auto;
-    height:120px;
+    width:120px;
+    height:240px;
     background-image: url(waltertonstamp.PNG);
     border-radius:0;
   }

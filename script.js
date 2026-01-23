@@ -1,9 +1,3 @@
-// =====================
-// GLOBAL STATE
-// =====================
-const LOCATIONS = ["trellick", "meanwhile", "wech", "walterton"];
-const scans = JSON.parse(localStorage.getItem("scans")) || {};
-let activePrompt = null;
 
 // =====================
 // LABEL OPEN / CLOSE
@@ -11,10 +5,19 @@ let activePrompt = null;
 // =====================
 // LABEL CLICK FUNCTIONS
 // =====================
+let help = document.getElementById("helplabel");
 let trellick = document.getElementById("trellicklabel");
 let meanwhile = document.getElementById("meanwhilelabel");
 let wech = document.getElementById("wechlabel");
 let walterton = document.getElementById("waltertonlabel");
+
+function openHelp() {
+    help.classList.toggle("open-label");
+    meanwhile.classList.remove("open-label");
+    wech.classList.remove("open-label");
+    walterton.classList.remove("open-label");
+    trellick.classList.remove("open-label");
+}
 
 function openTrellick() {
     trellick.classList.toggle("open-label");
@@ -44,49 +47,47 @@ function openWalterton() {
     wech.classList.remove("open-label");
 }
 
+function closeHelp() { help.classList.remove("open-label"); }
 function closeTrellick() { trellick.classList.remove("open-label"); }
 function closeMeanwhile() { meanwhile.classList.remove("open-label"); }
 function closeWech() { wech.classList.remove("open-label"); }
 function closeWalterton() { walterton.classList.remove("open-label"); }
 
 
-
 // =====================
-// QR CODE HANDLING
+// QR CODE INTERACTION
 // =====================
-const params = new URLSearchParams(window.location.search);
-const scannedLoc = params.get("loc");
+const urlParams = new URLSearchParams(window.location.search);
+const scanned = urlParams.get("loc");
 
-if (scannedLoc && LOCATIONS.includes(scannedLoc)) {
-  scans[scannedLoc] = true;
-  localStorage.setItem("scans", JSON.stringify(scans));
+let scans = JSON.parse(localStorage.getItem("scans")) || {};
+
+if (scanned) {
+    scans[scanned] = true;
+    localStorage.setItem("scans", JSON.stringify(scans));
 }
 
-// Unlock scanned markers + buttons
-LOCATIONS.forEach(loc => {
-  if (!scans[loc]) return;
-
-  const marker = document.querySelector("." + loc);
-  if (marker) marker.classList.add("location-scanned");
-
-  addViewInfoButton(loc);
+// unlock scanned markers
+Object.keys(scans).forEach(loc => {
+    const marker = document.querySelector(`.${loc}`);
+    if (marker) marker.classList.add("location-scanned");
 });
 
 // hide all prompts initially
 document.querySelectorAll(".prompt-screen").forEach(el => {
-el.style.display = "none";
+    el.style.display = "none";
 });
+
 
 if (scanned) {
     showPrompt(`prompt${scanned}`);
 }
 
-// =====================
-// PROMPT SYSTEM
-// =====================
-function showPrompt(location) {
-  closePrompt(); // ensuring only one prompt is active
 
+// =====================
+// PROMPT PAGE LOGIC
+// =====================
+function showPrompt(id) {
     const prompt = document.getElementById(id);
     if (!prompt) return;
 
@@ -99,48 +100,33 @@ function showPrompt(location) {
     prompt.classList.remove("hidden");
     prompt.style.display = "flex";
 
-    prompt.onclick = () => {
-        advancePrompt(prompt);
-        console.log("clicked")
-    };
+    prompt.onclick = () => advancePrompt(prompt);
 }
 
-  
+function advancePrompt(prompt) {
+    const pages = prompt.querySelectorAll(".prompt-page");
+    const current = prompt.querySelector(".prompt-page.active");
 
-  
-function advancePrompt() {
-  if (!activePrompt) return;
+    if (!current) return;
 
-  const pages = activePrompt.querySelectorAll(".prompt-page");
-  const current = activePrompt.querySelector(".prompt-page.active");
-  const next = current?.nextElementSibling;
+    const next = current.nextElementSibling;
 
-  if (next && next.classList.contains("prompt-page")) {
-    current.classList.remove("active");
-    next.classList.add("active");
-  } else {
-    closePrompt();
-  }
+    if (next && next.classList.contains("prompt-page")) {
+        current.classList.remove("active");
+        next.classList.add("active");
+    } else {
+        closePrompt(prompt);
+    }
 }
 
-function closePrompt() {
-  if (!activePrompt) return;
+function closePrompt(prompt) {
+    prompt.classList.add("hidden");
 
-  activePrompt.classList.add("hidden");
-
-  setTimeout(() => {
-    activePrompt.style.display = "none";
-    activePrompt = null;
-    showOverlayLogo();
-    centerMap();
-  }, 600);
-
-  // Auto-open prompt if QR used
-if (scannedLoc) {
-  showPrompt(scannedLoc);
+    setTimeout(() => {
+        prompt.style.display = "none";
+        centerMap();
+    }, 800);
 }
-}
-
 
 
 // =====================
@@ -158,7 +144,7 @@ function addViewInfoButton(location) {
   btn.onclick = e => {
     e.stopPropagation();
     console.log("on click");
-    showPrompt(location);
+    showPrompt("prompt" + location);
   };
 
   container.appendChild(btn);
@@ -168,26 +154,33 @@ function addViewInfoButton(location) {
 // MAP IMAGE PROGRESSION
 // =====================
 function updateMapImage() {
-  const map = document.getElementById("map-image");
-  if (!map) return;
+    const map = document.getElementById("map-image");
 
-  const count = LOCATIONS.filter(l => scans[l]).length;
-  const version = Math.max(1, count);
+    // Count how many locations have been scanned
+    const scanCount = Object.values(scans).filter(Boolean).length;
 
-  map.style.opacity = 0;
-  setTimeout(() => {
-    map.src = `map${version}.JPG`;
-    map.style.opacity = 1;
-  }, 250);
+    let mapVersion = 0;
+
+    if (scanCount >= 4) {
+        mapVersion = 4;
+    } else if (scanCount === 3) {
+        mapVersion = 3;
+    } else if (scanCount === 2) {
+        mapVersion = 2;
+    } else if (scanCount === 1) {
+        mapVersion = 1;
+    }
+
+    map.src = `map${mapVersion}.JPG`;
 }
 
-updateMapImage();
+
 
 // =====================
 // MAP CENTERING (SAFE)
 // =====================
 function centerMap() {
-  const mapContainer = document.getElementById("map-container");
+  const mapContainer = document.querySelector("container");
   if (!mapContainer) return;
 
   mapContainer.scrollTo({
@@ -206,18 +199,22 @@ function showOverlayLogo() {
   if (!logo) return;
 
   logo.classList.add("show");
-  setTimeout(() => logo.classList.remove("show"), 5000);
+  setTimeout(() => logo.classList.remove("show"), 600);
 }
 
-// Show logo overlay on page load for 1 second
-window.addEventListener("load", () => {
-    showOverlayLogo();
-});
+
+  // update the map
+   updateMapImage();
+
+  // show overlay logo for a second
+  showOverlayLogo();
 
 // =====================
 // COMMUNITY UNLOCK
 // =====================
-if (LOCATIONS.every(l => scans[l])) {
+const locations = ["trellick", "meanwhile", "wech", "walterton"];
+
+if (locations.every(l => scans[l])) {
   document.getElementById("community-btn")?.classList.add("show");
 }
 

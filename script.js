@@ -1,3 +1,18 @@
+// =====================
+// GLOBAL STATE
+// =====================
+const locations = ["trellick", "meanwhile", "wech", "walterton"];
+
+const urlParams = new URLSearchParams(window.location.search);
+const scanned = urlParams.get("loc");
+
+let scans = JSON.parse(localStorage.getItem("scans")) || {};
+
+// save scan if coming from QR
+if (scanned) {
+  scans[scanned] = true;
+  localStorage.setItem("scans", JSON.stringify(scans));
+}
 
 // =====================
 // LABEL OPEN / CLOSE
@@ -55,99 +70,55 @@ function closeWalterton() { walterton.classList.remove("open-label"); }
 
 
 // =====================
-// QR CODE INTERACTION
-// =====================
-const urlParams = new URLSearchParams(window.location.search);
-const scanned = urlParams.get("loc");
-
-let scans = JSON.parse(localStorage.getItem("scans")) || {};
-
-if (scanned) {
-    scans[scanned] = true;
-    localStorage.setItem("scans", JSON.stringify(scans));
-}
-
-// unlock scanned markers
-Object.keys(scans).forEach(loc => {
-    const marker = document.querySelector(`.${loc}`);
-    if (marker) marker.classList.add("location-scanned");
-});
-
-// hide all prompts initially
-document.querySelectorAll(".prompt-screen").forEach(el => {
-    el.style.display = "none";
-});
-
-if (scanned) {
-    showPrompt(`prompt${scanned}`);
-}
-
-
-// =====================
 // PROMPT PAGE LOGIC
 // =====================
 function showPrompt(id) {
-    const prompt = document.getElementById(id);
-    if (!prompt) return;
+  const prompt = document.getElementById(id);
+  if (!prompt) return;
 
-    // reset pages
-    const pages = prompt.querySelectorAll(".prompt-page");
-    pages.forEach((p, i) => {
-        p.classList.toggle("active", i === 0);
-    });
+  const pages = prompt.querySelectorAll(".prompt-page");
+  pages.forEach((p, i) => p.classList.toggle("active", i === 0));
 
-    prompt.classList.remove("hidden");
-    prompt.style.display = "flex";
+  prompt.classList.remove("hidden");
+  prompt.style.display = "flex";
 
-    prompt.onclick = () => advancePrompt(prompt);
+  prompt.onclick = () => advancePrompt(prompt);
 }
 
 function advancePrompt(prompt) {
-    const pages = prompt.querySelectorAll(".prompt-page");
-    const current = prompt.querySelector(".prompt-page.active");
+  const current = prompt.querySelector(".prompt-page.active");
+  if (!current) return;
 
-    if (!current) return;
+  const next = current.nextElementSibling;
 
-    const next = current.nextElementSibling;
-
-    if (next && next.classList.contains("prompt-page")) {
-        current.classList.remove("active");
-        next.classList.add("active");
-    } else {
-        closePrompt(prompt);
-    }
+  if (next && next.classList.contains("prompt-page")) {
+    current.classList.remove("active");
+    next.classList.add("active");
+  } else {
+    closePrompt(prompt);
+  }
 }
 
 function closePrompt(prompt) {
-    prompt.classList.add("hidden");
+  prompt.classList.add("hidden");
 
-    setTimeout(() => {
-        prompt.style.display = "none";
-        centerMap();
-    }, 800);
+  setTimeout(() => {
+    prompt.style.display = "none";
+    centerMap(); // unchanged
+  }, 800);
 }
 
 
 // =====================
 // STAMPS
 // =====================
-// Example: show stamp if location scanned
 function showStamp(location) {
-    const stamp = document.getElementById(location + "-stamp");
-    if (stamp) stamp.style.display = "block";
+  const stamp = document.getElementById(location + "-stamp");
+  if (!stamp) return;
 
-  
-    // Make stamp clickable to open prompt
-    stamp.onclick = () => showPrompt("prompt" + location);
+  stamp.style.display = "block";
+  stamp.onclick = () => showPrompt("prompt" + location);
 }
-
-// Run this for each scanned location
-Object.keys(scans).forEach(loc => {
-    if (scans[loc]) {
-        showStamp(loc);
-    }
-});
-
 
 
 // =====================
@@ -155,66 +126,59 @@ Object.keys(scans).forEach(loc => {
 // =====================
 function addViewInfoButton(location) {
   const label = document.getElementById(location + "label");
+  if (!label) return;
+
   const container = label.querySelector(".view-info-container");
   if (!container || container.querySelector(".view-info-btn")) return;
 
   const btn = document.createElement("button");
-  btn.textContent = "View Info Again";
   btn.className = "view-info-btn";
+  btn.textContent = "View Info Again";
 
   btn.onclick = e => {
     e.stopPropagation();
-    console.log("on click");
     showPrompt("prompt" + location);
   };
 
   container.appendChild(btn);
 }
 
+
 // =====================
 // MAP IMAGE PROGRESSION
 // =====================
 function updateMapImage() {
-    const map = document.getElementById("map-image");
+  const map = document.getElementById("map-image");
+  if (!map) return;
 
-    // Count how many locations have been scanned
-    const scanCount = Object.values(scans).filter(Boolean).length;
+  const count = Object.values(scans).filter(Boolean).length;
 
-    let mapVersion = 0;
+  let version = 0;
+  if (count >= 4) version = 4;
+  else if (count === 3) version = 3;
+  else if (count === 2) version = 2;
+  else if (count === 1) version = 1;
 
-    if (scanCount >= 4) {
-        mapVersion = 4;
-    } else if (scanCount === 3) {
-        mapVersion = 3;
-    } else if (scanCount === 2) {
-        mapVersion = 2;
-    } else if (scanCount === 1) {
-        mapVersion = 1;
-    }
-
-    map.src = `map${mapVersion}.JPG`;
+  map.src = `map${version}.JPG`;
 }
 
 
-
 // =====================
-// MAP CENTERING (SAFE)
+// MAP CENTERING (UNCHANGED)
 // =====================
-function centerMap() {
-  const mapContainer = document.querySelector("container");
-  if (!mapContainer) return;
-
-  mapContainer.scrollTo({
-    left: (mapContainer.scrollWidth - mapContainer.clientWidth) / 2,
-    top: (mapContainer.scrollHeight - mapContainer.clientHeight) / 2,
-    behavior: "smooth"
+window.addEventListener("load", () => {
+  const container = document.querySelector(".container");
+  container.scrollTo({
+    left: (container.scrollWidth - container.clientWidth) / 2,
+    top: (container.scrollHeight - container.clientHeight) / 2
   });
-}
+});
+
+
 
 // =====================
-// OVERLAY LOGO
+// OVERLAY LOGO (UNCHANGED)
 // =====================
-
 function showOverlayLogo() {
   const logo = document.getElementById("overlay-logo");
   if (!logo) return;
@@ -224,21 +188,45 @@ function showOverlayLogo() {
 }
 
 
-  // update the map
-   updateMapImage();
+// =====================
+// STARTUP LOGIC (IMPORTANT)
+// =====================
+document.addEventListener("DOMContentLoaded", () => {
 
-  // show overlay logo for a second
+  // hide all prompts on load
+  document.querySelectorAll(".prompt-screen").forEach(p => {
+    p.style.display = "none";
+  });
+
+  // unlock scanned locations
+  locations.forEach(loc => {
+    if (!scans[loc]) return;
+
+    const marker = document.querySelector(`.${loc}`);
+    marker?.classList.add("location-scanned");
+
+    showStamp(loc);
+    addViewInfoButton(loc);
+  });
+
+  // open prompt if arriving from QR
+  if (scanned) {
+    showPrompt("prompt" + scanned);
+  }
+
+  // update map
+  updateMapImage();
+
+  // show logo once
   showOverlayLogo();
 
-// =====================
-// COMMUNITY UNLOCK
-// =====================
-const locations = ["trellick", "meanwhile", "wech", "walterton"];
+  // community unlock
+  if (locations.every(l => scans[l])) {
+    document.getElementById("community-btn")?.classList.add("show");
+  }
 
-if (locations.every(l => scans[l])) {
-  document.getElementById("community-btn")?.classList.add("show");
-}
+  document.getElementById("community-btn")?.addEventListener("click", () => {
+    window.location.href = "forum.html";
+  });
 
-document.getElementById("community-btn")?.addEventListener("click", () => {
-  window.location.href = "forum.html";
 });

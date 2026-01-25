@@ -120,7 +120,8 @@ function showStamp(location) {
   stamp.style.transform = `rotate(${angle}deg)`;
 
   stamp.style.display = "block";
-  stamp.onclick = () => showPrompt("prompt" + location);
+  stamp.onclick = () => window["open" + location.charAt(0).toUpperCase() + location.slice(1)]();
+
 }
 
 

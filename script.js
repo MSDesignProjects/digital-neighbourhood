@@ -113,11 +113,6 @@ function closePrompt(prompt) {
 // STAMPS
 // =====================
 
-window.openTrellick = openTrellick;
-window.openMeanwhile = openMeanwhile;
-window.openWech = openWech;
-window.openWalterton = openWalterton;
-
 function showStamp(location) {
   const stamp = document.getElementById(location + "-stamp");
   if (!stamp) return;

@@ -200,6 +200,7 @@ html, body {
     background: rgba(0, 0, 0, 0.9);
     left: 50svw;
     top: 50svh;
+    width: 170px;
     color: #fff;
     text-align: center;
     padding: 50px;

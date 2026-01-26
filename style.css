@@ -134,7 +134,11 @@ html, body {
 
   .stamp {
     display: none;
-      pointer-events:none;
+    pointer-events: none;
+    max-width: 150px;
+    max-height: 150px;
+    width: auto;
+    height: auto;
   }
   
 
@@ -308,7 +312,6 @@ html, body {
   }
 
 
-
   .prompt-main h1 {
     color: #e94f3e;
     font-size: 30px;
@@ -364,6 +367,26 @@ html, body {
       font-size: 13px;
     }
   }
+
+  .prompt-stamp {
+    margin: 30px auto 15px;
+    display: block;
+    max-width: 200px;
+    max-height: 200px;
+    width: auto;
+    height: auto;
+
+  }
+
+  .stamp-title {
+    font-size: 30px;
+    font-weight: normal;
+    margin-bottom: 20px;
+    color: #e94f3e;
+  }
+
+
+
 
 
   .map-image {

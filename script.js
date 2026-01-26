@@ -14,11 +14,9 @@ if (scanned) {
   localStorage.setItem("scans", JSON.stringify(scans));
 }
 
+
 // =====================
-// LABEL OPEN / CLOSE
-// =====================
-// =====================
-// LABEL CLICK FUNCTIONS
+// LABEL FUNCTIONS
 // =====================
 let help = document.getElementById("helplabel");
 let trellick = document.getElementById("trellicklabel");
@@ -70,7 +68,7 @@ function closeWalterton() { walterton.classList.remove("open-label"); }
 
 
 // =====================
-// PROMPT PAGE LOGIC
+// PROMPT PAGE 
 // =====================
 function showPrompt(id) {
   const prompt = document.getElementById(id);
@@ -82,7 +80,12 @@ function showPrompt(id) {
   prompt.classList.remove("hidden");
   prompt.style.display = "flex";
 
-  prompt.onclick = () => advancePrompt(prompt);
+  prompt.onclick = e => {
+  if (!e.target.closest("a")) {
+    advancePrompt(prompt);
+    }
+  };
+
 }
 
 function advancePrompt(prompt) {
@@ -104,7 +107,8 @@ function closePrompt(prompt) {
 
   setTimeout(() => {
     prompt.style.display = "none";
-    centerMap(); // unchanged
+    centerMap();
+    updateMapImage(); 
   }, 800);
 }
 
@@ -112,16 +116,12 @@ function closePrompt(prompt) {
 // =====================
 // STAMPS
 // =====================
-
 function showStamp(location) {
   const stamp = document.getElementById(location + "-stamp");
   if (!stamp) return;
 
-  const angle = Math.random() * 16 - 8; // -8° to +8°
-  stamp.style.transform = `rotate(${angle}deg)`;
-
   stamp.style.display = "block";
-  stamp.onclick = () => window["open" + location.charAt(0).toUpperCase() + location.slice(1)]();
+  stamp.onclick = () =>  window["open" + location.charAt(0).toUpperCase() + location.slice(1)]();
 
 }
 
@@ -159,17 +159,17 @@ function updateMapImage() {
   const count = Object.values(scans).filter(Boolean).length;
 
   let version = 0;
-  if (count >= 4) version = 3;
-  else if (count === 3) version = 2;
-  else if (count === 2) version = 1;
-  else if (count === 1) version =0;
+  if (count >= 4) version = 4;
+  else if (count === 3) version = 3;
+  else if (count === 2) version = 2;
+  else if (count === 1) version = 1;
 
   map.src = `map${version}.JPG`;
 }
 
 
 // =====================
-// MAP CENTERING (UNCHANGED)
+// MAP CENTERING 
 // =====================
 window.addEventListener("load", () => {
   const container = document.querySelector(".container");
@@ -182,7 +182,7 @@ window.addEventListener("load", () => {
 
 
 // =====================
-// OVERLAY LOGO (UNCHANGED)
+// OVERLAY LOGO 
 // =====================
 function showOverlayLogo() {
   const logo = document.getElementById("overlay-logo");
@@ -194,7 +194,7 @@ function showOverlayLogo() {
 
 
 // =====================
-// STARTUP LOGIC (IMPORTANT)
+// !!!! STARTUP LOGIC !!!!!
 // =====================
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -225,13 +225,5 @@ document.addEventListener("DOMContentLoaded", () => {
   // show logo once
   showOverlayLogo();
 
-  // community unlock
-  if (locations.every(l => scans[l])) {
-    document.getElementById("community-btn")?.classList.add("show");
-  }
-
-  document.getElementById("community-btn")?.addEventListener("click", () => {
-    window.location.href = "forum.html";
-  });
 
 });

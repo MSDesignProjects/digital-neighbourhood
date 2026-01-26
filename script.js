@@ -159,10 +159,10 @@ function updateMapImage() {
   const count = Object.values(scans).filter(Boolean).length;
 
   let version = 0;
-  if (count >= 4) version = 4;
-  else if (count === 3) version = 3;
-  else if (count === 2) version = 2;
-  else if (count === 1) version = 1;
+  if (count >= 4) version = 3;
+  else if (count === 3) version = 2;
+  else if (count === 2) version = 1;
+  else if (count === 1) version = 0;
 
   map.src = `map${version}.JPG`;
 }

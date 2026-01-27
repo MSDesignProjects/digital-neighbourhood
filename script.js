@@ -109,6 +109,8 @@ function closePrompt(prompt) {
     prompt.style.display = "none";
     centerMap();
     updateMapImage(); 
+
+    showOverlayLogo(); 
   }, 800);
 }
 

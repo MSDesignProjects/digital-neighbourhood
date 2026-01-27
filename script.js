@@ -108,9 +108,6 @@ function closePrompt(prompt) {
   setTimeout(() => {
     prompt.style.display = "none";
     centerMap();
-    updateMapImage(); 
-
-    showOverlayLogo(); 
   }, 800);
 }
 
